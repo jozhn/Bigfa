@@ -1,6 +1,8 @@
 # Bigfa
 A theme for Typecho
 
+演示网站：https://dearjohn.cn
+
 ## 必需插件
 Stat
 
