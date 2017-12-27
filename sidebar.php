@@ -31,7 +31,7 @@
 		<?php while($recent->next()): ?>
 		<li class="list-item">
          <div class="list-itemImage">
-          <img class="image--outlined" src="https://static.dearjohn.cn<?php echo strstr(showfimg($recent->cid),'/usr');?>!/both/200x200"/>
+          <img class="image--outlined" src="https://img.dearjohn.cn<?php echo strstr(showfimg($recent->cid),'/usr');?>!/both/200x200"/>
          </div>
          <div class="list-itemInfo">
           <h4 class="list-itemTitle"><a href="<?php $recent->permalink();?>"><?php $recent->title();?></a></h4>
