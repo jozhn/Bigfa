@@ -1,20 +1,23 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
 
-<article class="main-content page-page">
-	<div class="post-header">
-		<h1 class="post-title" itemprop="name headline">
-			<?php $this->title() ?>
-		</h1>
-		<div class="post-data">
-			<time datetime="<?php $this->date('c'); ?>" itemprop="datePublished">Published on <?php $this->date('M j, Y'); ?></time>
-		</div>
+<div class="layoutSingleColumn">
+    <article class="u-paddingTop50" itemscope="itemscope" itemtype="http://schema.org/Article">
+	<header class="entry-header">
+	<h2 class="entry-title" itemprop="headline"><?php $this->title() ?></h2>
+	<div class="entry-meta">
+		<a><time class="timeago" datetime="<?php $this->date('Y-m-d H:i:s'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d H:i:s');?></time></a>
+		<span class="middotDivider"></span>
+		<a rel="category tag">关于</a>
 	</div>
-	<div id="post-content" class="post-content">
-		<?php parseContent($this); ?>
+	</header>
+	<div class="grap" itemprop="articleBody">
+		<?php $this->content(); ?>
 	</div>
-</article>
+    </article>
 
-<?php $this->need('comments.php'); ?>
+    <?php $this->need('comments.php'); ?>
+
+</div><!-- end #main-->
 
 <?php $this->need('footer.php'); ?>
