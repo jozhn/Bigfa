@@ -16,7 +16,7 @@
         </div> 
         <div class="widget-card-description"> 
          <p><?php $this->options->descript(); ?></p> 
-         <p class="cute"><a href="<?php $this->options->siteUrl(); ?>">了解更多</a></p>
+         <p class="cute"><a href="<?php $this->options->siteUrl('/about'); ?>">了解更多</a></p>
         </div> 
        </div> 
       </div>
@@ -31,7 +31,7 @@
 		<?php while($recent->next()): ?>
 		<li class="list-item">
          <div class="list-itemImage">
-          <img class="image--outlined" src="https://img.dearjohn.cn<?php echo strstr(showfimg($recent->cid),'/usr');?>!/both/200x200"/>
+          <img class="image--outlined" src="https://img.dearjohn.cn<?php echo strstr(showfimg($recent->cid),'/usr');?>!sidebar"/>
          </div>
          <div class="list-itemInfo">
           <h4 class="list-itemTitle"><a href="<?php $recent->permalink();?>"><?php $recent->title();?></a></h4>

@@ -48,7 +48,17 @@ if (!empty($this->options->next_cdn) && $this->options->next_cdn){
     <div class="metabar-block u-floatRight"> 
      <form id="search" class="metabar-predictiveSearch search-form" action="<?php $this->options->siteUrl(); ?>" role="search" method="GET"> 
         <label title="Search <?php $this->options->title(); ?>"> 
-        <svg viewBox="0 0 25 25" width="25" height="25" class="svgIcon"><use class="svgIcon-use" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://dearjohn.cn/usr/themes/Bigfa/img/icons.svg#svg-search-25px-p0"></use></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+          <symbol viewBox="0 0 25 25" id="svg-search">
+            <title>svg-search</title>
+            <path d="M20.067 18.933l-4.157-4.157c.837-1.032 1.34-2.345 1.34-3.776 0-3.314-2.686-6-6-6s-6 2.686-6 6 2.686 6 6 6c1.43 0 2.744-.503 3.776-1.34l4.157 4.157c.113.113.27.183.442.183.345 0 .625-.28.625-.625 0-.173-.07-.33-.183-.442zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"
+            />
+          </symbol>
+        </svg>
+        <svg viewBox="0 0 25 25" width="25" height="25" class="svgIcon">
+            <use class="svgIcon-use" xlink:href="#svg-search">
+            </use>
+        </svg>
          <input id="input" class="textInput textInput--dark textInput--rounded" name="s" type="text" required="true" placeholder="Search <?php $this->options->title(); ?>" /> 
   	   </label>
      </form> 
