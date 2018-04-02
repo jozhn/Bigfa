@@ -6,7 +6,7 @@ A theme for Typecho
 ![image](https://github.com/JohnStinky/Bigfa/raw/master/screenshot.jpg)
 
 ## 必需插件
-Stat
+Stat(统计文章浏览数)
 
 ## 首页效果
 ![image](https://github.com/jozhn/Bigfa/raw/master/screenshot1.png)
