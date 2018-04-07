@@ -6,7 +6,9 @@
     
     <?php $comments->listComments(); ?>
 
-    <?php $comments->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
+	<div class="lists-navigator clearfix">
+    <?php $comments->pageNav('←','→','2','...'); ?>
+	</div>
     
     <?php endif; ?>
 
