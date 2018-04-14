@@ -5,6 +5,12 @@ A theme for Typecho
 
 ![image](https://github.com/JohnStinky/Bigfa/raw/master/screenshot.jpg)
 
+## Getting Started
+- Star本项目
+- 下载本项目
+- 上传解压的文件夹至theme文件夹下
+- 启用
+
 ## 必需插件
 Stat(统计文章浏览数)
 
