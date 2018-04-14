@@ -15,15 +15,6 @@ A theme for Typecho
 ## 必需插件
 Stat(统计文章浏览数)
 
-## 首页效果
-![image](https://github.com/jozhn/Bigfa/raw/master/screenshot1.png)
-
-## 评论效果
-![image](https://github.com/jozhn/Bigfa/raw/master/screenshot2.png)
-
-## 分类页面
-![image](https://github.com/jozhn/Bigfa/raw/master/screenshot3.png)
-
 ## 已知Bug
 若某分类下无文章的话，其分类页面的分类名称与slug均无输出，这是Typecho一直没有解决的问题，暂时无解。
 
