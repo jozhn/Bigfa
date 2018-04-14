@@ -8,7 +8,8 @@ A theme for Typecho
 ## Getting Started
 - Star本项目
 - 下载本项目
-- 上传解压的文件夹至theme文件夹下
+- 解压并重命名为`Bigfa`
+- 上传至theme文件夹下
 - 启用
 
 ## 必需插件
