@@ -12,6 +12,13 @@ A theme for Typecho
 - 上传至theme文件夹下
 - 启用
 
+## Features
+- `Instantclick.js` 全页面AJAX加载 5kb
+- `Prism.js` 代码高亮 13kb
+- `timeago.js` 文章时间 3kb
+- 静态资源CDN设置
+- 分类页面图
+
 ## 必需插件
 Stat(统计文章浏览数)
 
