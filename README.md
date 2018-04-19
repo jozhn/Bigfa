@@ -19,6 +19,10 @@ A theme for Typecho
 - 静态资源CDN设置
 - 分类页面图
 
+## TO-DO List
+[] 完善设置
+[] 精简代码
+
 ## 必需插件
 Stat(统计文章浏览数)
 
