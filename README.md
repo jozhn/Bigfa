@@ -22,6 +22,7 @@ A theme for Typecho
 ## TO-DO List
 - [ ] 完善设置
 - [ ] 精简代码
+- [ ] Disqus评论————暂时自用是disqus
 
 ## 必需插件
 Stat(统计文章浏览数)
