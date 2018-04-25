@@ -3,7 +3,7 @@ A theme for Typecho
 
 演示网站：https://dearjohn.cn
 
-![image](https://github.com/JohnStinky/Bigfa/raw/master/screenshot.jpg)
+![image](https://raw.githubusercontent.com/jozhn/Bigfa/master/screenshot.jpg)
 
 ## Getting Started
 - Star本项目
