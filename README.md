@@ -26,7 +26,7 @@ A theme for Typecho
 - [ ] Disqus评论————暂时是原生评论，自用disqus
 
 ## 必需插件
-Stat(统计文章浏览数)
+[Stat](https://github.com/jozhn/Stat-for-Typecho)(统计文章浏览数)
 
 ## 已知Bug
 若某分类下无文章的话，其分类页面的分类名称与slug均无输出，这是Typecho一直没有解决的问题，暂时无解。
