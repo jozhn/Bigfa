@@ -6,7 +6,7 @@
 	<header class="entry-header">
 	<h2 class="entry-title" itemprop="headline"><?php $this->title() ?></h2>
 	<div class="entry-meta">
-		<a><time class="timeago" datetime="<?php $this->date('Y-m-d H:i:s'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d H:i:s');?></time></a>
+		<a><time class="lately-b" datetime="<?php $this->date('Y-m-d H:i:s'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d H:i:s');?></time></a>
 		<span class="middotDivider"></span>
 		<a rel="category tag">关于</a>
 	</div>
