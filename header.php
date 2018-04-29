@@ -32,9 +32,8 @@ if (!empty($this->options->next_cdn) && $this->options->next_cdn){
    
    <header class="metabar metabar--bordered metabar--top u-clearfix"> 
     <div class="metabar-block u-floatLeft" itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization"> 
-     <h1 class="site-title u-floatLeft" itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject"> <a href="<?php $this->options->siteUrl(); ?>" class="logo" title="<?php $this->options->title(); ?>"> <img src="<?php $this->options->themeUrl('img/logo.png'); ?>" width="38" /></a></h1> 
-     <meta itemprop="name" content="Dearjohn" /> 
-     <meta itemprop="url" content="https://dearjohn.cn" /> 
+     <h1 class="site-title u-floatLeft" itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject"> <a href="<?php $this->options->siteUrl(); ?>" class="logo" title="<?php $this->options->title(); ?>"> <img src="<?php echo $this->options->logoUrl; ?>" width="38" /></a></h1> 
+     <meta itemprop="url" content="$this->options->siteUrl();" /> 
     </div> 
     <div class="metabar-block metabar-center"> 
      <nav class="navTabs navTabs--metabar navTabs--narrow" itemtype="http://schema.org/SiteNavigationElement" itemscope=""> 
