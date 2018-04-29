@@ -19,7 +19,7 @@
               <div class="block-postMeta">
                 <a href="<?php $this->permalink() ?>"  rel="category tag"><?php $this->category(','); ?></a>
                 <span class="middotDivider"></span>
-               <a data-no-instant><time class="timeago" datetime="<?php $this->date('Y-m-d H:i:s'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d H:i:s');?></time></a>
+               <a data-no-instant><time class="lately-a" datetime="<?php $this->date('Y-m-d H:i:s'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d H:i:s');?></time></a>
               </div>
         </article>
     <?php endwhile; ?>
@@ -35,12 +35,14 @@
 
 <div class="loadingBar"></div>
 
-    <script src="<?php $this->options->themeUrl('static/js/instantclick.min.js'); ?>" data-no-instant></script>
+    <script src="https://cdn.bootcss.com/instantclick/3.0.0/instantclick.min.js" data-no-instant></script>
     <script data-no-instant>
-    InstantClick.on('change', function() {
-      jQuery("time.timeago").timeago();
-    });
-    InstantClick.init();
+	InstantClick.on('change', function(isInitialLoad) {
+        $.lately({
+            'target' : '.lately-a,.lately-b,.lately-c'
+        });
+      });
+    InstantClick.init('mousedown');
     </script>
 </body>
 </html>

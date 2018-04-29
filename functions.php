@@ -3,21 +3,26 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 function themeConfig($form) {
     $siteUrl = Helper::options()->siteUrl;
+	//昵称
     $nickname = new Typecho_Widget_Helper_Form_Element_Text('nickname', NULL, '', _t('侧边栏显示的昵称'), _t('显示在头像右侧'));
     $form->addInput($nickname);
+	//头像
     $avatarUrl = new Typecho_Widget_Helper_Form_Element_Text('avatarUrl', NULL, '', _t('首页头像地址'), _t('将显示在首页侧边栏,如/usr/themes/Bigfa/img/head.jpg 或 https://xxx.com/xxx.jpg'));
     $form->addInput($avatarUrl);
+	//个人描述
     $descript = new Typecho_Widget_Helper_Form_Element_Text('descript', NULL, 'computer loser', _t(' 个人描述'), _t('将显示在侧边栏的昵称下方'));
     $form->addInput($descript);
-    $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, '', _t('网站Logo地址'), _t('将显示在网站左上角,如/usr/themes/Bigfa/img/logo.png 或 https://xxx.com/xxx.jpg'));
+	//网站logo
+    $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, '', _t('网站Logo地址'), _t('将显示在网站左上角'));
     $form->addInput($logoUrl);
-
-    //设置图片CDN替换规则     
+	//文章默认缩略图
+	$thumUrl = new Typecho_Widget_Helper_Form_Element_Text('thumUrl', NULL, 'https://img.dearjohn.cn/usr/themes/Bigfa/img/default.jpg', _t('文章默认缩略图地址'), _t('侧边栏文章默认缩略图地址'));
+    $form->addInput($thumUrl);
+    //设置图片CDN替换规则
     $to_replace = new Typecho_Widget_Helper_Form_Element_Text('to_replace', NULL, '', _t('图片CDN替换前地址'), _t('如http://xxx.com'));
     $form->addInput($to_replace);
     $replace_to = new Typecho_Widget_Helper_Form_Element_Text('replace_to', NULL, '', _t('图片替换后地址'),_t('如https://cdn.xxx.com或//cdn.xxx.com'));
     $form->addInput($replace_to);
-
     //静态资源CDN设置
     $next_cdn = new Typecho_Widget_Helper_Form_Element_Text('next_cdn', NULL, $siteUrl, _t('CDN 镜像地址'), _t('静态文件 CDN 镜像加速地址，加速js和css<br>格式参考：'.$siteUrl.'<br>不用请留空或者保持默认'));
     $form->addInput($next_cdn);
@@ -29,9 +34,6 @@ function themeInit($archive) {
     }
     if ($archive->is('categoty')) {
         $archive->parameter->pageSize = 1000; // 自定义条数
-    }
-    if ($archive->is('single')) {
-        $archive->text = cdnReplace($archive);
     }
 }
 
@@ -78,29 +80,24 @@ function threadedComments($comments, $singleCommentOptions) {
     <?php
 }
 
-//获取文章首图或首个文件图
-function showfimg($cid)
-{
-		$position = 0;
-		$allowimg = 'jpg,bmp,png';//允许的图片格式
-		$imgurl = 'http://dearjohn.cn/usr/themes/Bigfa/img/default.jpg';//默认图片地址
-        $db = Typecho_Db::get();
-        $rs = $db->fetchRow($db->select('table.contents.text')
-        ->from('table.contents')
-        ->where('table.contents.type = ?', 'attachment')
-        ->where('table.contents.parent= ?', $cid)
-        ->order('table.contents.cid', Typecho_Db::SORT_ASC)
-        ->limit(1)->offset(max(0,intval($position)-1)));
-		if(isset($rs['text'])){
-			$fimg = unserialize($rs['text']);		
-			$imgtype = explode(",",$allowimg );
-			if(!in_array ($fimg['type'], $imgtype)) {
-				$fimg['path'] = $imgurl;
-			}
-			return $fimg['path'];
-		}else{
-			return $imgurl;
-		}
+function thumb($cid) {
+	$options = Typecho_Widget::widget('Widget_Options');
+	if (empty($imgurl)) {
+			$imgurl = $options->thumUrl;
+	}
+	 $db = Typecho_Db::get();
+	 $rs = $db->fetchRow($db->select('table.contents.text')
+		->from('table.contents')
+		->where('table.contents.type = ?', 'attachment')
+		->where('table.contents.parent= ?', $cid)
+		->order('table.contents.cid', Typecho_Db::SORT_ASC)
+		->limit(1));
+	if(isset($rs['text'])){
+		$img = unserialize($rs['text']);
+		echo $options->next_cdn  . $img['path'];
+	}else{
+		echo $imgurl;
+	}
 }
 
 function getPostCount()
@@ -114,20 +111,4 @@ function getPostCount()
     return $count;
 }
 
-function cdnReplace(Widget_Archive $archive)
-{
-    $options = Typecho_Widget::widget('Widget_Options');
-    $to_replace = $options->to_replace;
-    $replace_to = $options->replace_to;
-    if(!empty($to_replace)&&!empty($replace_to)){
-        foreach($archive->stack as $index=>$con){
-            if(array_key_exists('text', $con)){
-                $archive->stack[$index]['text'] = str_replace($to_replace, $replace_to, $con['text']);
-            }
-        }
-        reset($archive->stack);
-        return str_replace($to_replace, $replace_to, $archive->text);
-    }else{
-        return $archive->text;
-    }
-}
+

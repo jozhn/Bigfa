@@ -34,7 +34,7 @@
                       <?php $this->views(); ?>次浏览
                       <?php $views+=$this->views; ?>
                       <span class="middotDivider"></span>
-                     <a data-no-instant><time class="timeago" datetime="<?php $this->date('Y-m-d H:i:s'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d H:i:s');?></time></a>
+                     <a data-no-instant><time class="lately-a" datetime="<?php $this->date('Y-m-d H:i:s'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d H:i:s');?></time></a>
                     </div>
               </article>
           <?php endwhile; ?>

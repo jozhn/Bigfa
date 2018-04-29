@@ -22,7 +22,6 @@
     <script src="https://cdn.bootcss.com/instantclick/3.0.0/instantclick.min.js" data-no-instant></script>
     <script data-no-instant>
       InstantClick.on('change', function(isInitialLoad) {
-        jQuery("time.timeago").timeago();
         if (typeof Prism !== 'undefined'){
           Prism.highlightAll(true,null);
         }
