@@ -18,12 +18,12 @@ A theme for Typecho
 - `lately.js` [文章时间](https://github.com/Tokinx/lately)
 - `view-image` [轻量级灯箱](https://github.com/Tokinx/ViewImage)
 - 静态资源CDN设置
-- 分类页面图
+- 分类页面(新建页面选择模板即可)
 
 ## TO-DO List
 - [ ] 完善设置
 - [ ] 精简代码
-- [ ] Disqus评论————暂时自用是disqus
+- [ ] Disqus评论————暂时是原生评论，自用disqus
 
 ## 必需插件
 Stat(统计文章浏览数)
