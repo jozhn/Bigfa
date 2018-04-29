@@ -16,7 +16,7 @@ function themeConfig($form) {
     $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, '', _t('网站Logo地址'), _t('将显示在网站左上角'));
     $form->addInput($logoUrl);
 	//文章默认缩略图
-	$thumUrl = new Typecho_Widget_Helper_Form_Element_Text('thumUrl', NULL, 'https://img.dearjohn.cn/usr/themes/Bigfa/img/default.jpg', _t('文章默认缩略图地址'), _t('侧边栏文章默认缩略图地址'));
+	$thumUrl = new Typecho_Widget_Helper_Form_Element_Text('thumUrl', NULL, '', _t('文章默认缩略图地址'), _t('侧边栏文章默认缩略图地址'));
     $form->addInput($thumUrl);
     //设置图片CDN替换规则
     $to_replace = new Typecho_Widget_Helper_Form_Element_Text('to_replace', NULL, '', _t('图片CDN替换前地址'), _t('如http://xxx.com'));
@@ -26,6 +26,9 @@ function themeConfig($form) {
     //静态资源CDN设置
     $next_cdn = new Typecho_Widget_Helper_Form_Element_Text('next_cdn', NULL, $siteUrl, _t('CDN 镜像地址'), _t('静态文件 CDN 镜像加速地址，加速js和css<br>格式参考：'.$siteUrl.'<br>不用请留空或者保持默认'));
     $form->addInput($next_cdn);
+	//备案号
+	$beian = new Typecho_Widget_Helper_Form_Element_Text('beian', NULL, $siteUrl, _t('备案号'), _t('填写备案号'));
+    $form->addInput($beian);
 }
 
 function themeInit($archive) {
@@ -83,7 +86,10 @@ function threadedComments($comments, $singleCommentOptions) {
 function thumb($cid) {
 	$options = Typecho_Widget::widget('Widget_Options');
 	if (empty($imgurl)) {
+		if(!empty($options->thumUrl) && $options->thumUrl)
 			$imgurl = $options->thumUrl;
+		else
+			$imgurl = 'https://img.dearjohn.cn/usr/themes/Bigfa/img/default.jpg';
 	}
 	 $db = Typecho_Db::get();
 	 $rs = $db->fetchRow($db->select('table.contents.text')
