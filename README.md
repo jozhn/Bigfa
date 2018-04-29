@@ -34,6 +34,6 @@ A theme for Typecho
 ## 使用方法
 - 侧边栏的缩略图来自文章里的附件中第一张图片,请先在后台设置默认缩略图
 - 关于页面和分类页面需要手动选择模板新建页面
-- 分类的缩略图请自己上传到`Bigfa/img/category/`目录下，并命名为目录slug'.jpg'
+- 分类的缩略图请自己上传到`Bigfa/img/category/`目录下，并命名为目录slug+`.jpg`
 - 头像和logo自己上传到`Bigfa/img/`下
 - 在希望使用灯箱的图片前后分别插入代码`<ul class="view-image">`和`</ul>`
