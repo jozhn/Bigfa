@@ -9,7 +9,7 @@
        </div> 
        <div class="widget-card"> 
         <div class="widget-card-imageWrapper"> 
-         <a href=" " data-action="imageZoomIn"><img src="<?php $this->options->themeUrl('img/head.jpg'); ?>" class="avatar" width="32" height="32" /></a> 
+         <a href=" " data-action="imageZoomIn"><img src="<?php echo $this->options->avatarUrl; ?>" class="avatar" width="32" height="32" /></a> 
         </div> 
         <div class="widget-card-content">
         <?php $this->options->nickname(); ?>
