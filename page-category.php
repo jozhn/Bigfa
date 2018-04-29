@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 ?>
 
-<div class="u-backgroundGrayLightest u-marginBottom50 hasHeaderBackground" style="background-image: url(//static.fatesinger.com/2016/11/tkbh7oxv2k2zhf09.png!/both/1280x400)">
+<div class="u-backgroundGrayLightest u-marginBottom50 hasHeaderBackground" style="background-image: url(https://i.loli.net/2018/04/29/5ae5756891992.png)">
     <header class="hero--standalone layoutSingleColumn layoutSingleColumn--wide">
         <h2 class="hero-title">分类</h2>
         <p class="hero-description">Stories grouped by theme or topic</p>
