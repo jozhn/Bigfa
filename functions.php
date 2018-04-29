@@ -5,9 +5,12 @@ function themeConfig($form) {
     $siteUrl = Helper::options()->siteUrl;
     $nickname = new Typecho_Widget_Helper_Form_Element_Text('nickname', NULL, '', _t('侧边栏显示的昵称'), _t('显示在头像右侧'));
     $form->addInput($nickname);
-
+    $avatarUrl = new Typecho_Widget_Helper_Form_Element_Text('avatarUrl', NULL, '', _t('首页头像地址'), _t('将显示在首页侧边栏,如/usr/themes/Bigfa/img/head.jpg 或 https://xxx.com/xxx.jpg'));
+    $form->addInput($avatarUrl);
     $descript = new Typecho_Widget_Helper_Form_Element_Text('descript', NULL, 'computer loser', _t(' 个人描述'), _t('将显示在侧边栏的昵称下方'));
     $form->addInput($descript);
+    $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, '', _t('网站Logo地址'), _t('将显示在网站左上角,如/usr/themes/Bigfa/img/logo.png 或 https://xxx.com/xxx.jpg'));
+    $form->addInput($logoUrl);
 
     //设置图片CDN替换规则     
     $to_replace = new Typecho_Widget_Helper_Form_Element_Text('to_replace', NULL, '', _t('图片CDN替换前地址'), _t('如http://xxx.com'));
