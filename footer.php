@@ -16,6 +16,8 @@
 <?php $this->footer(); ?>
 
     <script src="https://cdn.bootcss.com/instantclick/3.0.0/instantclick.min.js" data-no-instant></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+	<script type="text/javascript">$("pre code").each(function(i, block) {hljs.highlightBlock(block);});</script>
     <script data-no-instant>
       InstantClick.on('change', function(isInitialLoad) {
         //jQuery("time.timeago").timeago();
@@ -29,9 +31,6 @@
             'delay'  : 300                //延迟时间
 			});
 		});
-        if (typeof Prism !== 'undefined'){
-          Prism.highlightAll(true,null);
-        }
       });
       InstantClick.init('mousedown');
     </script>

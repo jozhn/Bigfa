@@ -12,14 +12,11 @@ if (!empty($this->options->next_cdn) && $this->options->next_cdn){
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><?php $this->archiveTitle(array('category' => _t('%s'), 'search' => _t('Search Results for "%s"'), 'tag' => _t('%s'), 'author' => _t('%s的文章')), '', ' - '); ?><?php $this->options->title(); ?></title>
-
     <!-- 使用url函数转换相关路径 -->
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script src="//tokinx.github.io/lately/lately.min.js"></script>
+	<script src="//tokinx.github.io/ViewImage/view-image.min.js"></script>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('static/css/style.css'); ?>">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('static/css/prism.css'); ?>">
-    <script src="<?php $this->options->themeUrl('static/js/prism.js'); ?>" data-no-instant></script>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" data-no-instant></script>
-    <script src="//tokinx.github.io/lately/lately.min.js" data-no-instant></script>
-
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
 	
