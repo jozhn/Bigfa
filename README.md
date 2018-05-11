@@ -14,7 +14,7 @@ A theme for Typecho
 
 ## Features
 - `Instantclick.js` 全页面AJAX加载
-- `Prism.js` 代码高亮
+- `Highlight.js` 代码高亮
 - `lately.js` [文章时间](https://github.com/Tokinx/lately)
 - `view-image` [轻量级灯箱](https://github.com/Tokinx/ViewImage)
 - 静态资源CDN设置
