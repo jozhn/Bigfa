@@ -21,9 +21,9 @@ A theme for Typecho
 - 分类页面(新建页面选择模板即可)
 
 ## TO-DO List
-- [ ] 完善设置
-- [ ] 精简代码
-- [ ] Disqus评论————暂时是原生评论，自用disqus
+- [x] 完善设置
+- [x] 精简代码
+- [ ] ~~Disqus评论~~ 不准备添加disqus了，在国内访问太困难，需要自己建api
 
 ## 必需插件
 [Stat](https://github.com/jozhn/Stat-for-Typecho)(统计文章浏览数)
@@ -37,3 +37,19 @@ A theme for Typecho
 - 分类的缩略图请自己上传到`Bigfa/img/category/`目录下，并命名为目录slug+`.jpg`
 - 头像和logo在后台设置
 - 在希望使用灯箱的图片前后分别插入代码`<ul class="view-image">`和`</ul>`
+
+## 更新记录
+>2018.5.11
+
+v1.1 
+
+- 完善Markdown样式
+
+- 代码高亮改为Highlight.js
+- 修复safari无法显示blockquote
+
+> 2018.4.19 
+
+v1.0
+
+- 基础版
