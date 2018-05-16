@@ -31,7 +31,7 @@
 		<?php while($recent->next()): ?>
 		<li class="list-item">
          <div class="list-itemImage">
-          <img class="image--outlined" src="<?php echo thumb($recent->cid);?>!sidebar"/>
+          <img class="image--outlined" src="<?php echo thumb($recent->cid);?>"/>
          </div>
          <div class="list-itemInfo">
           <h4 class="list-itemTitle"><a href="<?php $recent->permalink();?>"><?php $recent->title();?></a></h4>
