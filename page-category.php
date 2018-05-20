@@ -22,7 +22,7 @@ $this->need('header.php');
     <?php while($categorys->next()): ?>
     <div class="list list--borderedBottom">
         <a class="listItem u-clearfix u-block" href="<?php $categorys->permalink();?>">
-            <img class="list-avatar" src="<?php $this->options->themeUrl('img/category/');?><?php echo $categorys->slug().'.jpg!sidebar'; ?>" width="40" height="40">
+            <img class="list-avatar" src="<?php $this->options->themeUrl('img/category/');?><?php echo $categorys->slug().'.jpg'; ?>" width="40" height="40">
             <div class="list-meta"> 
 	            <div class="list-title"><?php $categorys->name();?></div>
 	            <div class="list-description"><?php echo $categorys->description(); ?></div>
