@@ -1,5 +1,6 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
+
 <div class="layoutSingleColumn layoutSingleColumn-wide">
     <div class="section-header no-underline u-textAlignCenter" style="padding: 80px 0">
     <svg version="1.1" id="error" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="352px" viewBox="0 0 2524 1024" enable-background="new 0 0 2524 1024" xml:space="preserve">
@@ -9,4 +10,5 @@
     </svg>
     </div>
 </div>
+
 <?php $this->need('footer.php'); ?>

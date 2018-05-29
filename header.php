@@ -12,33 +12,39 @@ if (!empty($this->options->next_cdn) && $this->options->next_cdn){
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><?php $this->archiveTitle(array('category' => _t('%s'), 'search' => _t('Search Results for "%s"'), 'tag' => _t('%s'), 'author' => _t('%s的文章')), '', ' - '); ?><?php $this->options->title(); ?></title>
+	<!-- DNS预读取，加速disqus
+	<link rel="dns-prefetch" href="https://api.dearjohn.cn">
+	-->
     <!-- 使用url函数转换相关路径 -->
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-	<script src="//tokinx.github.io/lately/lately.min.js"></script>
-	<script src="//tokinx.github.io/ViewImage/view-image.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" data-no-instant></script>
+	<script src="https://img.dearjohn.cn/usr/themes/Bigfa/static/js/lately.min.js" data-no-instant></script>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('static/css/style.css'); ?>">
+	<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css" />
+
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
-	
 </head>
 
-<body class="is-js">
+<body class="is-enableBrandingButtons is-js">
   <div class="site-main surface-container"> 
     <div class="butterBar"><p class="butterBar-message"></p></div> 
    
    <header class="metabar metabar--bordered metabar--top u-clearfix"> 
     <div class="metabar-block u-floatLeft" itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization"> 
      <h1 class="site-title u-floatLeft" itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject"> <a href="<?php $this->options->siteUrl(); ?>" class="logo" title="<?php $this->options->title(); ?>"> <img src="<?php echo $this->options->logoUrl; ?>" width="38" /></a></h1> 
-     <meta itemprop="url" content="<?php $this->options->siteUrl(); ?>" /> 
+     <meta itemprop="name" content="Dearjohn" /> 
+     <meta itemprop="url" content="https://dearjohn.cn" /> 
     </div> 
     <div class="metabar-block metabar-center"> 
-     <nav class="navTabs navTabs--metabar navTabs--narrow" itemtype="http://schema.org/SiteNavigationElement" itemscope=""> 
-      <ul class="subnav-ul layoutSingleColumn layoutSingleColumn--wide">
-        <?php if ($this->is('index')) : ?>
-        <?php $this->widget('Widget_Contents_Page_List')->parse('<li  class="subnav-li"><a class="subnav-item" href="{permalink}">{title}</a></li>'); ?>
-        <?php endif; ?>
-      </ul>
-     </nav> 
+		 <nav class="navTabs navTabs--metabar navTabs--narrow" itemtype="http://schema.org/SiteNavigationElement" itemscope=""> 
+			 <div class="layoutSingleColumn layoutSingleColumn--wide">
+				  <ul class="subnav-ul">
+					<?php if ($this->is('index')) : ?>
+					<?php $this->widget('Widget_Contents_Page_List')->parse('<li  class="subnav-li"><a class="subnav-item" href="{permalink}">{title}</a></li>'); ?>
+					<?php endif; ?>
+				  </ul>
+			 </div>
+		</nav> 
     </div> 
     <div class="metabar-block u-floatRight"> 
      <form id="search" class="metabar-predictiveSearch search-form" action="<?php $this->options->siteUrl(); ?>" role="search" method="GET"> 

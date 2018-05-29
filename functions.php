@@ -18,7 +18,11 @@ function themeConfig($form) {
 	//文章默认缩略图
 	$thumUrl = new Typecho_Widget_Helper_Form_Element_Text('thumUrl', NULL, '', _t('文章默认缩略图地址'), _t('侧边栏文章默认缩略图地址'));
     $form->addInput($thumUrl);
-
+    //设置图片CDN替换规则
+    $to_replace = new Typecho_Widget_Helper_Form_Element_Text('to_replace', NULL, '', _t('图片CDN替换前地址'), _t('如http://xxx.com'));
+    $form->addInput($to_replace);
+    $replace_to = new Typecho_Widget_Helper_Form_Element_Text('replace_to', NULL, '', _t('图片替换后地址'),_t('如https://cdn.xxx.com或//cdn.xxx.com'));
+    $form->addInput($replace_to);
     //静态资源CDN设置
     $next_cdn = new Typecho_Widget_Helper_Form_Element_Text('next_cdn', NULL, $siteUrl, _t('CDN 镜像地址'), _t('静态文件 CDN 镜像加速地址，加速js和css<br>格式参考：'.$siteUrl.'<br>不用请留空或者保持默认'));
     $form->addInput($next_cdn);
@@ -36,6 +40,12 @@ function themeInit($archive) {
     }
 }
 
+function parseContent($obj){
+    $options = Typecho_Widget::widget('Widget_Options');
+    $obj->content = preg_replace("/<a href=\"([^\"]*)\">/i", "<a href=\"\\1\" target=\"_blank\">", $obj->content);
+    echo trim($obj->content);
+}
+
 //自定义评论
 function threadedComments($comments, $singleCommentOptions) {
     $commentClass = '';
@@ -47,8 +57,8 @@ function threadedComments($comments, $singleCommentOptions) {
 						<div class="comment-avatar">
                             <?php
                             //头像CDN
-                            $host = 'https://cdn.v2ex.com'; //自定义头像CDN服务器
-                            $url = '/gravatar/'; //自定义头像目录,一般保持默认即可
+                            $host = 'https://secure.gravatar.com'; //自定义头像CDN服务器
+                            $url = '/avatar/'; //自定义头像目录,一般保持默认即可
                             $size = '32'; //自定义头像大小
                             $rating = Helper::options()->commentsAvatarRating;
                             $hash = md5(strtolower($comments->mail));
@@ -62,7 +72,7 @@ function threadedComments($comments, $singleCommentOptions) {
 									<span class="comment-reply-link u-cursorPointer" ><?php $comments->reply($singleCommentOptions->replyWord);?></span>
 							</div>
 							<div class="comment-time" itemprop="datePublished">
-                                <time class="timeago" datetime="<?php $comments->date('Y-m-d H:i:s');?>" itemprop="datePublished"><?php $comments->date('Y-m-d H:i:s');?></time>
+                                <time class="lately-b" datetime="<?php $comments->date('Y-m-d H:i:s');?>" itemprop="datePublished"><?php $comments->date('Y-m-d H:i:s');?></time>
 							</div>
 						</div>
 					</div>

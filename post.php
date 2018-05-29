@@ -15,7 +15,7 @@
       <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="<?php $this->permalink(); ?>"/>
 
         <div class="grap" itemprop="articleBody">
-            <?php $this->content(); ?>
+            <?php parseContent($this); ?>
         </div>
     </article>
 

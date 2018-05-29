@@ -39,7 +39,7 @@
                 <label for="textarea"><?php _e('内容'); ?></label>
                 <textarea rows="8" cols="50" name="text" id="comment" class="inputGroup inputTextarea" required ><?php $this->remember('text'); ?></textarea>
             </p>
-            <p>
+            <p class="form-submit">
                 <button type="submit" id="submit" class="submit"><?php _e('提交评论'); ?></button><?php $comments->cancelReply(); ?>
             </p>
         </form>
@@ -48,3 +48,5 @@
     <h3><?php _e('评论已关闭'); ?></h3>
     <?php endif; ?>
 </div>
+
+
