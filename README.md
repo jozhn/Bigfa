@@ -39,12 +39,22 @@ A theme for Typecho
 - 在希望使用灯箱的图片前后分别插入代码`<ul class="view-image">`和`</ul>`
 
 ## 更新记录
->2018.5.11
+
+> 2018.5.29
+
+v1.2
+
+- 整理优化CSS
+- 完善按钮样式
+- 修复图片不显示的bug
+- 完善后台设置
+
+
+> 2018.5.11
 
 v1.1 
 
 - 完善Markdown样式
-
 - 代码高亮改为Highlight.js
 - 修复safari无法显示blockquote
 
