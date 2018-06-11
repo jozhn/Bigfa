@@ -63,3 +63,9 @@ v1.1
 v1.0
 
 - 基础版
+
+dog | bird | cat
+----|------|----
+foo | foo  | foo
+bar | bar  | bar
+baz | baz  | baz
