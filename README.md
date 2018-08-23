@@ -11,6 +11,7 @@ A theme for Typecho
 - 解压并重命名为`Bigfa`
 - 上传至theme文件夹下
 - 启用
+- 关闭Typecho垃圾评论过滤(否则会导致无法评论)
 
 ## Features
 - `Instantclick.js` 全页面AJAX加载
