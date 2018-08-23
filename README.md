@@ -5,6 +5,9 @@ A theme for Typecho
 
 ![image](https://raw.githubusercontent.com/jozhn/Bigfa/master/screenshot.jpg)
 
+## Requirements
+- PHP >= 5.6.0
+
 ## Getting Started
 - Star本项目
 - 下载本项目
