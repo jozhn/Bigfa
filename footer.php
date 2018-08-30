@@ -31,12 +31,6 @@
     <script data-no-instant>
 		InstantClick.on('change', function(isInitialLoad) {
 			$("pre code").each(function(i, block) {hljs.highlightBlock(block);});
-			if (typeof aplayers !== 'undefined'){
-				for (var i = 0; i < aplayers.length; i++) {
-					try {aplayers[i].destroy()} catch(e){}
-				}
-			}
-			loadMeting();
 			jQuery(document).ready(function () {
 				$.lately({
 					'target' : '.lately-a,.lately-b,.lately-c'
