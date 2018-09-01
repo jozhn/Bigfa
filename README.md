@@ -27,7 +27,6 @@ A theme for Typecho
 ## TO-DO List
 - [x] 完善设置
 - [x] 精简代码
-- [ ] ~~Disqus评论~~ 不准备添加disqus了，在国内访问太困难，需要自己建api
 
 ## 必需插件
 [Stat](https://github.com/jozhn/Stat-for-Typecho)(统计文章浏览数)
@@ -43,6 +42,14 @@ A theme for Typecho
 - 在希望使用灯箱的图片前后分别插入代码`<ul class="view-image">`和`</ul>`
 
 ## 更新记录
+
+> 2018.5.29
+
+v1.3
+
+- 完善各种功能的后台开关
+- 解决instantclick和APlayer冲突
+- 还没写完，待发布
 
 > 2018.5.29
 
