@@ -39,9 +39,9 @@ if (!empty($this->options->next_cdn) && $this->options->next_cdn){
 		 <nav class="navTabs navTabs--metabar navTabs--narrow" itemtype="http://schema.org/SiteNavigationElement" itemscope=""> 
 			 <div class="layoutSingleColumn layoutSingleColumn--wide">
 				  <ul class="subnav-ul">
-					<?php if ($this->is('index')) : ?>
+					<?php //if ($this->is('index')) : ?>
 					<?php $this->widget('Widget_Contents_Page_List')->parse('<li  class="subnav-li"><a class="subnav-item" href="{permalink}">{title}</a></li>'); ?>
-					<?php endif; ?>
+					<?php //endif; ?>
 				  </ul>
 			 </div>
 		</nav> 
