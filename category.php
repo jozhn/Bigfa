@@ -31,8 +31,8 @@
                         <?php $this->excerpt(80,'...'); ?>
                       </div>
                     <div class="block-postMeta">
-                      <?php $this->views(); ?>次浏览
-                      <?php $views+=$this->views; ?>
+                      <?php echo ViewsCounter_Plugin::getViews(); ?>次浏览
+                      <?php $views+=ViewsCounter_Plugin::getViews(); ?>
                       <span class="middotDivider"></span>
                      <a data-no-instant><time class="lately-a" datetime="<?php $this->date('Y-m-d H:i:s'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d H:i:s');?></time></a>
                     </div>
