@@ -30,6 +30,7 @@ A theme for Typecho
 
 ## 必需插件
 [Viewscounter](https://github.com/jozhn/Stat-for-Typecho)(统计文章浏览数)
+
 ~~[Stat](https://github.com/jozhn/Stat-for-Typecho)(统计文章浏览数)~~ 不稳定，已放弃
 
 ## 已知Bug
