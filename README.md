@@ -29,7 +29,7 @@ A theme for Typecho
 - [x] 精简代码
 
 ## 必需插件
-[Viewscounter](https://github.com/jozhn/Stat-for-Typecho)(统计文章浏览数)
+[Viewscounter](https://github.com/mierhuo/Typecho-ViewsCounter)(统计文章浏览数)
 
 ~~[Stat](https://github.com/jozhn/Stat-for-Typecho)(统计文章浏览数)~~ 不稳定，已放弃
 
@@ -44,6 +44,10 @@ A theme for Typecho
 - 在希望使用灯箱的图片前后分别插入代码`<ul class="view-image">`和`</ul>`
 
 ## 更新记录
+
+> 2019.1.11
+
+- 浏览次数插件更新为viewscounter，不会报错
 
 > 2018.9.1
 

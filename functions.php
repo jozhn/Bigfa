@@ -167,4 +167,3 @@ function getPostCount()
     return $count;
 }
 
-
