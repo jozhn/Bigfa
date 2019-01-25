@@ -12,9 +12,6 @@ if (!empty($this->options->next_cdn) && $this->options->next_cdn){
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><?php $this->archiveTitle(array('category' => _t('%s'), 'search' => _t('Search Results for "%s"'), 'tag' => _t('%s'), 'author' => _t('%s的文章')), '', ' - '); ?><?php $this->options->title(); ?></title>
-	<!-- DNS预读取，加速disqus
-	<link rel="dns-prefetch" href="https://api.dearjohn.cn">
-	-->
     <!-- 使用url函数转换相关路径 -->
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" data-no-instant></script>
 	<script src="https://img.dearjohn.cn/usr/themes/Bigfa/static/js/lately.min.js" data-no-instant></script>
