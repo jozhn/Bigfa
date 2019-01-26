@@ -27,7 +27,7 @@ A theme for Typecho
 
 ## 主题特点
 - `Highlight.js` 代码高亮
-- 'MathJax' 数学公式
+- `MathJax` 数学公式
 - `lately.js` [文章时间](https://github.com/Tokinx/lately)
 - 静态资源CDN设置
 - 分类页面(新建页面选择模板即可)
