@@ -34,6 +34,29 @@
 			});
 		});
     </script>
+
+		<?php if ($this->options->mathjax == 'able'):?>
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			showProcessingMessages: false,
+			messageStyle: "none",
+			extensions: ["tex2jax.js"],
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+				displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
+				ignoreClass:"comment-content"
+			},
+			"HTML-CSS": {
+				availableFonts: ["STIX","TeX"],
+				showMathMenu: false
+			}
+		});
+		MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+		</script>
+		<script src="https://cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<?php endif; ?>
 	
 	<?php if($this->options->Analytics): ?>
 	<script>
