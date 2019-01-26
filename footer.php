@@ -17,9 +17,9 @@
 <?php $this->footer(); ?>
 	<?php if ($this->options->highlightjs == 'able'):?>
 	<script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+	<script>$("pre code").each(function(i, block) {hljs.highlightBlock(block);});</script>
 	<?php endif; ?>
     <script>
-		$("pre code").each(function(i, block) {hljs.highlightBlock(block);});
 		<?php if ($this->options->aplayer == 'able'):?>
 		if (typeof aplayers !== 'undefined'){
 			for (var i = 0; i < aplayers.length; i++) {
