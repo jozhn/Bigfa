@@ -49,6 +49,14 @@ function themeConfig($form) {
         ),
         'disable', _t('APlayer设置'), _t('默认禁止，若启用请先安装APlayer插件Meting版'));
     $form->addInput($aplayer);
+
+    //开启MathJax
+    $mathjax = new Typecho_Widget_Helper_Form_Element_Radio('mathjax',
+        array('able' => _t('启用'),
+            'disable' => _t('禁止'),
+        ),
+        'disable', _t('MathJax数学公式渲染设置'), _t('默认禁止'));
+    $form->addInput($mathjax);
 	
 	//备案号
 	$beian = new Typecho_Widget_Helper_Form_Element_Text('beian', NULL, $siteUrl, _t('备案号'), _t('填写备案号'));
