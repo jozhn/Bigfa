@@ -17,7 +17,7 @@
     
         <h3 id="response" class="comments-title"><?php _e('发表留言'); ?></h3>
 
-        <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" class="responsesForm" role="form">
+        <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" class="responsesForm" role="form" onsubmit="return check_before_submit()">
             <p class="comment-note">人生在世，错别字在所难免，无需纠正。</p>
             <?php if($this->user->hasLogin()): ?>
             <p><?php _e('登录身份: '); ?><a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>. <a href="<?php $this->options->logoutUrl(); ?>" title="Logout"><?php _e('退出'); ?> &raquo;</a></p>
@@ -40,9 +40,30 @@
                 <textarea rows="8" cols="50" name="text" id="comment" class="inputGroup inputTextarea" required ><?php $this->remember('text'); ?></textarea>
             </p>
             <p class="form-submit">
+                <input class="inputGroup" id="sum" name="sum" required />
+            </p>
+            <p class="form-submit">
                 <button type="submit" id="submit" class="submit"><?php _e('提交评论'); ?></button><?php $comments->cancelReply(); ?>
             </p>
         </form>
+        <script>
+        (function() {
+            var sum_input = document.getElementById('sum');
+            var x = Math.floor(Math.random() * 10);
+            var y = Math.floor(Math.random() * 10);
+            sum_input.placeholder = x + " + " + y + " = ?";
+        }());
+          
+        function check_before_submit() {
+            var sum_input = document.getElementById('sum');
+            var array = sum_input.placeholder.split(' ');
+            if (parseInt(array[0]) + parseInt(array[2]) !== parseInt(sum_input.value)) {
+                alert('验证码错误');
+                return false;
+            }
+            return true;
+        }
+        </script>
     </div>
     <?php else: ?>
     <h3><?php _e('评论已关闭'); ?></h3>
