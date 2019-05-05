@@ -59,9 +59,7 @@
 		<?php endif; ?>
 	
 	<?php if($this->options->Analytics): ?>
-	<script>
 	<?php echo $this->options->Analytics; ?>
-	</script>
 	<?php endif; ?>
 </body>
 </html>
