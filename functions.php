@@ -63,7 +63,7 @@ function themeConfig($form) {
     $form->addInput($beian);
 	
 	//统计代码
-	$Analytics = new Typecho_Widget_Helper_Form_Element_Textarea('Analytics', NULL, NULL, _t('统计代码'), _t('填写你从谷歌Analytics或百度统计获取到的代码，不需要script标签'));
+	$Analytics = new Typecho_Widget_Helper_Form_Element_Textarea('Analytics', NULL, NULL, _t('统计代码'), _t('填写你从谷歌Analytics或百度统计获取到的代码，需要script标签'));
     $form->addInput($Analytics);
 }
 
