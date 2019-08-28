@@ -1,7 +1,7 @@
 # Bigfa
 A theme for Typecho
 
-DEMO：https://jozhn.com
+DEMO：https://jozhn.com (站点备案暂时关闭)
 
 ![image](https://raw.githubusercontent.com/jozhn/Bigfa/master/screenshot.jpg)
 
