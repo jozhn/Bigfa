@@ -1,7 +1,7 @@
 # Bigfa
 A theme for Typecho
 
-DEMO：https://jozhn.com (站点备案暂时关闭)
+DEMO：https://jozhn.com
 
 ![image](https://raw.githubusercontent.com/jozhn/Bigfa/master/screenshot.jpg)
 
@@ -38,7 +38,7 @@ DEMO：https://jozhn.com (站点备案暂时关闭)
 
 v1.4
 
-- 应该是最后一个版本
+- 无文章缩略图的最后一个版本
 - 浏览次数插件更新为viewscounter，不会报错
 - 增加MathJax
 
