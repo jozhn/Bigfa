@@ -3,7 +3,7 @@ A theme for Typecho
 
 DEMO：https://jozhn.com
 
-![image](https://raw.githubusercontent.com/jozhn/Bigfa/master/screenshot.jpg)
+![Snipaste_2019-10-29_18-27-57.png](https://i.loli.net/2019/10/29/q7Pwy5c1x2pdGve.png)
 
 ## 环境要求
 - PHP >= 5.6.0
@@ -33,6 +33,14 @@ DEMO：https://jozhn.com
 - 分类页面(新建页面选择模板即可)
 
 ## 更新记录
+
+> 2019.10.29
+
+v2.0
+
+- 添加首页文章缩略图
+- CSS样式大改
+- AJAX动态加载文章列表
 
 > 2019.1.26
 

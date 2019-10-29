@@ -24,14 +24,14 @@ function themeConfig($form) {
 	$thumUrl = new Typecho_Widget_Helper_Form_Element_Text('thumUrl', NULL, '', _t('文章默认缩略图地址'), _t('侧边栏文章默认缩略图地址'));
     $form->addInput($thumUrl);
 	
-    //设置文章内图片CDN替换规则
-    $to_replace = new Typecho_Widget_Helper_Form_Element_Text('to_replace', NULL, '', _t('图片CDN替换前地址'), _t('如http://www.john.com'));
+    //设置图片CDN替换规则
+    $to_replace = new Typecho_Widget_Helper_Form_Element_Text('to_replace', NULL, '', _t('图片CDN替换前地址'), _t('如http://xxx.com'));
     $form->addInput($to_replace);
-    $replace_to = new Typecho_Widget_Helper_Form_Element_Text('replace_to', NULL, '', _t('图片替换后地址'),_t('如https://cdn.john.com或//cdn.john.com'));
+    $replace_to = new Typecho_Widget_Helper_Form_Element_Text('replace_to', NULL, '', _t('图片替换后地址'),_t('如https://cdn.xxx.com或//cdn.xxx.com'));
     $form->addInput($replace_to);
 	
     //静态资源CDN设置
-    $next_cdn = new Typecho_Widget_Helper_Form_Element_Text('next_cdn', NULL, $siteUrl, _t('CDN 镜像地址'), _t('静态文件 CDN 镜像加速地址，加速js、css<br>格式参考：https://cdn.john.com/<br>不用请留空或者保持默认'));
+    $next_cdn = new Typecho_Widget_Helper_Form_Element_Text('next_cdn', NULL, $siteUrl, _t('CDN 镜像地址'), _t('静态文件 CDN 镜像加速地址，加速js和css<br>格式参考：'.$siteUrl.'<br>不用请留空或者保持默认'));
     $form->addInput($next_cdn);
 	
 	//Highlightjs
@@ -49,14 +49,14 @@ function themeConfig($form) {
         ),
         'disable', _t('APlayer设置'), _t('默认禁止，若启用请先安装APlayer插件Meting版'));
     $form->addInput($aplayer);
-
-    //开启MathJax
-    $mathjax = new Typecho_Widget_Helper_Form_Element_Radio('mathjax',
+	
+	//开启Valine
+    $valine = new Typecho_Widget_Helper_Form_Element_Radio('valine',
         array('able' => _t('启用'),
             'disable' => _t('禁止'),
         ),
-        'disable', _t('MathJax数学公式渲染设置'), _t('默认禁止'));
-    $form->addInput($mathjax);
+        'disable', _t('Valine设置'), _t('默认禁止，若启用请先安装Valine.js'));
+    $form->addInput($valine);
 	
 	//备案号
 	$beian = new Typecho_Widget_Helper_Form_Element_Text('beian', NULL, $siteUrl, _t('备案号'), _t('填写备案号'));
@@ -82,50 +82,7 @@ function parseContent($obj){
     echo trim($obj->content);
 }
 
-//自定义评论
-function threadedComments($comments, $singleCommentOptions) {
-    $commentClass = '';
-    $commentLevelClass = $comments->_levels > 0 ? ' comment-child' : ' comment-parent';
-    ?>
-    <li class="comment">
-			<div id="<?php $comments->theId() ?>" class="comment-block">
-					<div class="comment-info u-clearfix">
-						<div class="comment-avatar">
-                            <?php
-                            //头像CDN
-                            $host = 'https://secure.gravatar.com'; //自定义头像CDN服务器
-                            $url = '/avatar/'; //自定义头像目录,一般保持默认即可
-                            $size = '32'; //自定义头像大小
-                            $rating = Helper::options()->commentsAvatarRating;
-                            $hash = md5(strtolower($comments->mail));
-                            $avatar = $host . $url . $hash . '?s=' . $size . '&r=' . $rating . '&d=';
-                            ?>
-                            <img class="avatar" src="<?php echo $avatar ?>" alt="<?php echo $comments->author; ?>" width="<?php echo $size ?>" height="<?php echo $size ?>" />
-							
-						</div>
-						<div class="comment-meta">
-							<div class="comment-author"><?php $singleCommentOptions->beforeAuthor();$comments->author();$singleCommentOptions->afterAuthor();?>
-									<span class="comment-reply-link u-cursorPointer" ><?php $comments->reply($singleCommentOptions->replyWord);?></span>
-							</div>
-							<div class="comment-time" itemprop="datePublished">
-                                <time class="lately-b" datetime="<?php $comments->date('Y-m-d H:i:s');?>" itemprop="datePublished"><?php $comments->date('Y-m-d H:i:s');?></time>
-							</div>
-						</div>
-					</div>
-					<div class="comment-content">
-						<?php $comments->content();?>
-					</div>
-			</div>
-            <?php if ($comments->children) { ?>
-                <ol class="children">
-                    <?php $comments->threadedComments($singleCommentOptions);?>
-                </ol>
-            <?php } ?>
-    </li>
-    <?php
-}
-
-function thumb($cid) {
+function thumb($cid,$isIndex) {
 	$options = Typecho_Widget::widget('Widget_Options');
 	if (empty($imgurl)) {
 		if(!empty($options->thumUrl) && $options->thumUrl)
@@ -142,9 +99,12 @@ function thumb($cid) {
 		->limit(1));
 	if(isset($rs['text'])){
 		$img = unserialize($rs['text']);
-		echo $options->next_cdn  . $img['path'];
+		return $options->next_cdn . $img['path'];
 	}else{
-		echo $imgurl;
+		if(!$isIndex)
+			return $imgurl;
+		else
+			return null;
 	}
 }
 
@@ -159,3 +119,55 @@ function getPostCount()
     return $count;
 }
 
+function is_mobile()
+{
+    $user_agent     = $_SERVER['HTTP_USER_AGENT'];
+    $mobile_browser = array(
+        "mqqbrowser", //手机QQ浏览器
+        "opera mobi", //手机opera
+        "juc", "iuc", //uc浏览器
+        "fennec", "ios", "applewebKit/420", "applewebkit/525", "applewebkit/532", "ipad", "iphone", "ipaq", "ipod",
+        "iemobile", "windows ce", //windows phone
+        "240x320", "480x640", "acer", "android", "anywhereyougo.com", "asus", "audio", "blackberry",
+        "blazer", "coolpad", "dopod", "etouch", "hitachi", "htc", "huawei", "jbrowser", "lenovo",
+        "lg", "lg-", "lge-", "lge", "mobi", "moto", "nokia", "phone", "samsung", "sony",
+        "symbian", "tablet", "tianyu", "wap", "xda", "xde", "zte",
+    );
+    $is_mobile = false;
+    foreach ($mobile_browser as $device) {
+        if (stristr($user_agent, $device)) {
+            $is_mobile = true;
+            break;
+        }
+    }
+    return $is_mobile;
+}
+
+
+function getCommentAt($coid){
+    $db   = Typecho_Db::get();
+    $prow = $db->fetchRow($db->select('parent')
+        ->from('table.comments')
+        ->where('coid = ? AND status = ?', $coid, 'approved'));
+    $parent = $prow['parent'];
+    if ($parent != "0") {
+        $arow = $db->fetchRow($db->select('author')
+            ->from('table.comments')
+            ->where('coid = ? AND status = ?', $parent, 'approved'));
+        $author = $arow['author'];
+        $href   = '<a href="#comment-'.$parent.'" class="cute atreply">@'.$author.'</a>';
+        //$href = '@'.$author;
+        return $href;
+    } else {
+        return '';
+    }
+}
+
+function getAvatar($size){
+	$host = 'https://secure.gravatar.com';
+	$url = '/avatar/';
+	$default = 'mm';
+	$rating = Helper::options()->commentsAvatarRating;
+	$hash = md5(strtolower($comments->mail));
+	$avatar = $host . $url . $hash . '?s=' . $size . '&r=' . $rating . '&d=' . $default;
+}

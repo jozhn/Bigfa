@@ -1,23 +1,40 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; 
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 //当cdn加速开启时候定义cdn的地址
 if (!empty($this->options->next_cdn) && $this->options->next_cdn){
     define('__TYPECHO_THEME_URL__', Typecho_Common::url(__TYPECHO_THEME_DIR__ . '/' . basename(dirname(__FILE__)) , $this->options->next_cdn));
 }
 ?>
+<?php //如果是ajax方式的请求就直接退出此页面使得该页面为空 ?>
+<?php if(isset($_GET['load_type']) and $_GET['load_type'] == 'ajax'):  ?>
+    <?php return; //完成ajax方式返回，退出此页面?>
+<?php endif ?>
+
 <!DOCTYPE HTML>
 <html  lang="zh-CN">
 <head>
     <meta http-equiv="Content-Type" charset="<?php $this->options->charset(); ?>">
+    <meta name="baidu-site-verification" content="Md1b0xdKNB" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><?php $this->archiveTitle(array('category' => _t('%s'), 'search' => _t('Search Results for "%s"'), 'tag' => _t('%s'), 'author' => _t('%s的文章')), '', ' - '); ?><?php $this->options->title(); ?></title>
-    <!-- 使用url函数转换相关路径 -->
+	<!-- DNS预读取，加速disqus
+	<link rel="dns-prefetch" href="https://api.dearjohn.cn">
+	-->
+	<!-- jquery、valine、highlight.css、style.css -->
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" data-no-instant></script>
-	<script src="https://img.dearjohn.cn/usr/themes/Bigfa/static/js/lately.min.js" data-no-instant></script>
+	<?php if ($this->options->valine=='able') : ?>
+	<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+	<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+	<?php endif; ?>
+	
     <link rel="stylesheet" href="<?php $this->options->themeUrl('static/css/style.css'); ?>">
 	<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css" />
 
+    <?php if($this->options->Analytics): ?>
+    <?php $this->options->Analytics(); ?>
+    <?php endif; ?>
+    
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
 </head>
@@ -28,16 +45,21 @@ if (!empty($this->options->next_cdn) && $this->options->next_cdn){
    
    <header class="metabar metabar--bordered metabar--top u-clearfix"> 
     <div class="metabar-block u-floatLeft" itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization"> 
-     <h1 class="site-title u-floatLeft" itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject"> <a href="<?php $this->options->siteUrl(); ?>" class="logo" title="<?php $this->options->title(); ?>"> <img src="<?php echo $this->options->logoUrl; ?>" width="38" /></a></h1> 
-     <meta itemprop="name" content="Dearjohn" /> 
-     <meta itemprop="url" content="https://dearjohn.cn" /> 
+		<h1 class="site-title u-floatLeft" itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject"> 
+			<a href="<?php $this->options->siteUrl(); ?>" class="logo" title="<?php $this->options->title(); ?>"> 
+				<img src="<?php echo $this->options->logoUrl; ?>" width="38" />
+				<span class="u-textScreenReader"><?php $this->options->title(); ?></span>
+			</a>
+		</h1> 
+		<meta itemprop="name" content="<?php $this->options->title(); ?>" /> 
+		<meta itemprop="url" content="<?php $this->options->siteUrl(); ?>" /> 
     </div> 
     <div class="metabar-block metabar-center"> 
 		 <nav class="navTabs navTabs--metabar navTabs--narrow" itemtype="http://schema.org/SiteNavigationElement" itemscope=""> 
 			 <div class="layoutSingleColumn layoutSingleColumn--wide">
 				  <ul class="subnav-ul">
-					<?php //if ($this->is('index')) : ?>
-					<?php $this->widget('Widget_Contents_Page_List')->parse('<li  class="subnav-li"><a class="subnav-item" href="{permalink}">{title}</a></li>'); ?>
+					<?php //如果是首页才显示菜单if ($this->is('index')) : ?>
+					<?php $this->widget('Widget_Contents_Page_List')->parse('<li class="subnav-li"><a class="subnav-item" href="{permalink}">{title}</a></li>'); ?>
 					<?php //endif; ?>
 				  </ul>
 			 </div>
@@ -62,7 +84,6 @@ if (!empty($this->options->next_cdn) && $this->options->next_cdn){
      </form> 
     </div> 
    </header>
-
 
     
     

@@ -1,4 +1,77 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+
+<?php
+function threadedComments($comments, $options) {
+    $commentClass = '';
+    if ($comments->authorId) {
+        if ($comments->authorId == $comments->ownerId) {
+            $commentClass .= ' comment-by-author';
+        } else {
+            $commentClass .= ' comment-by-user';
+        }
+    }
+
+    $commentLevelClass = $comments->levels > 0 ? ' comment-child' : ' comment-parent';
+    $depth = $comments->levels +1;
+
+    if ($comments->url) {
+        $author = '<a href="' . $comments->url . '"target="_blank"' . ' rel="external nofollow">' . $comments->author . '</a>';
+    } else {
+        $author = $comments->author;
+    }
+?>
+
+<li id="li-<?php $comments->theId(); ?>" class="comment comment-body<?php
+if ($depth > 1 && $depth < 3) {
+    echo ' children ';
+    $comments->levelsAlt('comment-level-odd', ' comment-level-even');
+}
+else if( $depth > 2){
+    echo ' comment-child2';
+    $comments->levelsAlt(' comment-level-odd', ' comment-level-even');
+}
+else {
+    echo ' comment-parent';
+}
+
+$comments->alt(' comment-odd', ' comment-even');
+?>">
+    <div id="<?php $comments->theId(); ?>">
+        <?php
+            $host = 'https://secure.gravatar.com';
+            $url = '/avatar/';
+            $size = '80';
+            $default = 'mm';
+            $rating = Helper::options()->commentsAvatarRating;
+            $hash = md5(strtolower($comments->mail));
+            $avatar = $host . $url . $hash . '?s=' . $size . '&r=' . $rating . '&d=' . $default;
+        ?>
+        <div class="comment-block" onclick="">
+            <div class="comment-info u-flex">
+				<div class="comment-avatar u-flex0">
+					<img class="avatar" src="<?php echo $avatar ?>" width="<?php echo $size ?>" height="<?php echo $size ?>" />
+               </div>
+				<div class="comment-meta u-flex1 u-flexColumn">
+					<div class="comment-author" itemprop="author">
+						<a href="" rel="external nofollow" class="url"><?php echo $author; ?></a>
+						<span class="comment-reply-link u-cursorPointer"><?php $comments->reply('回复'); ?></span>
+					</div>
+					<div class="comment-time" itemprop="datePublished" datetime="<?php $comments->date(); ?>"><?php $comments->date('M j, Y'); ?></div>
+				</div>
+            </div>
+            <div class="comment-content" itemprop="description">
+                <?php echo getCommentAt($comments->coid) ?><?php $comments->content(); ?>
+            </div>
+        </div>
+    </div>
+    <?php if ($comments->children) { ?>
+        <div class="comment">
+            <?php $comments->threadedComments($options); ?>
+        </div>
+    <?php } ?>
+</li>
+<?php } ?>
+
 <div id="comments">
     <?php $this->comments()->to($comments); ?>
     <?php if ($comments->have()): ?>
@@ -17,7 +90,7 @@
     
         <h3 id="response" class="comments-title"><?php _e('发表留言'); ?></h3>
 
-        <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" class="responsesForm" role="form" onsubmit="return check_before_submit()">
+        <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" class="responsesForm" role="form">
             <p class="comment-note">人生在世，错别字在所难免，无需纠正。</p>
             <?php if($this->user->hasLogin()): ?>
             <p><?php _e('登录身份: '); ?><a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>. <a href="<?php $this->options->logoutUrl(); ?>" title="Logout"><?php _e('退出'); ?> &raquo;</a></p>
@@ -40,30 +113,10 @@
                 <textarea rows="8" cols="50" name="text" id="comment" class="inputGroup inputTextarea" required ><?php $this->remember('text'); ?></textarea>
             </p>
             <p class="form-submit">
-                <input class="inputGroup" id="sum" name="sum" required />
+                <button type="submit" id="submit" class="inputSubmit">Post Comment</button><?php $comments->cancelReply(); ?>
             </p>
-            <p class="form-submit">
-                <button type="submit" id="submit" class="submit"><?php _e('提交评论'); ?></button><?php $comments->cancelReply(); ?>
-            </p>
+			
         </form>
-        <script>
-        (function() {
-            var sum_input = document.getElementById('sum');
-            var x = Math.floor(Math.random() * 10);
-            var y = Math.floor(Math.random() * 10);
-            sum_input.placeholder = x + " + " + y + " = ?";
-        }());
-          
-        function check_before_submit() {
-            var sum_input = document.getElementById('sum');
-            var array = sum_input.placeholder.split(' ');
-            if (parseInt(array[0]) + parseInt(array[2]) !== parseInt(sum_input.value)) {
-                alert('验证码错误');
-                return false;
-            }
-            return true;
-        }
-        </script>
     </div>
     <?php else: ?>
     <h3><?php _e('评论已关闭'); ?></h3>

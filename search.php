@@ -11,20 +11,26 @@
     </div>
     <div class="blockGroup">
     <?php while($this->next()):?>
-        <article class="block--list block--withoutImage u-clearfix" itemscope="itemscope" itemtype="http://schema.org/Article">
-              <h2 class="block-title" itemprop="headline"><a href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h2>
-                <div class="block-snippet" itemprop="about">
-                  <?php $this->excerpt(80,'...'); ?>
-                </div>
-              <div class="block-postMeta">
-                <a href="<?php $this->permalink() ?>"  rel="category tag"><?php $this->category(','); ?></a>
-                <span class="middotDivider"></span>
-               <a data-no-instant><time class="lately-a" datetime="<?php $this->date('Y-m-d H:i:s'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d H:i:s');?></time></a>
-              </div>
-        </article>
+        <article class="block--list" itemscope="itemscope" itemtype="http://schema.org/Article">
+				<div class="block-content">
+					<h2 class="block-title" itemprop="headline">
+						<a href="<?php $this->permalink() ?>"><?php $this->title() ?></a>
+					</h2>
+					<div class="block-snippet" itemprop="about">
+						<?php $this->excerpt(80,'...'); ?>
+					</div>
+					<div class="block-postMeta">
+						<a href="<?php $this->permalink() ?>"  rel="category tag"><?php $this->category(','); ?></a>
+						<span class="middotDivider"></span>
+						<time itemprop="datePublished" datetime="<?php $this->date('Y-m-d H:i:s'); ?>"><?php $this->date('Y年m月d日');?></time>
+					</div>
+				</div>
+				<?php if(thumb($this->cid,1)!=null): ?>
+				<a class="block-image" aria-label="<?php $this->title() ?>" href="<?php $this->permalink() ?>" style="background-image: url(<?php echo thumb($this->cid,1); ?>);"></a>
+				<?php endif; ?>
+           </article>
     <?php endwhile; ?>
   </div>
-  <div class="block-more"></div>
 
   <div class="lists-navigator clearfix">
       <?php $this->pageNav('←','→','2','...'); ?>
