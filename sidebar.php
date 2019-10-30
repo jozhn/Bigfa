@@ -28,7 +28,7 @@
 		<?php foreach (ViewsCounter_Plugin::getMostViewed() as $post): ?>
 		<li class="list-item">
 			<div class="list-itemImage">
-				<img class="image--outlined" src="<?php echo thumb($post['cid'],0);?>!sidebar"/>
+				<img class="image--outlined" src="<?php echo thumb($post['cid'],0);?><?php $this->options->cdnSuffix(); ?>"/>
 			</div>
 			<div class="list-itemInfo">
 				<h4 class="list-itemTitle">

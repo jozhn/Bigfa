@@ -3,7 +3,7 @@
 <?php if ($this->is('index')) : ?>
    <footer class="layoutSingleColumn layoutSingleColumn--wide footer" role="contentinfo"> 
     <div class="site-info JiEun">
-     <p>Theme <a href="https://github.com/jozhn/Bigfa" target="_blank">Bigfa</a>
+     <p><?php $this->options->siteDescript(); ?>&nbsp;&nbsp;&nbsp;&nbsp;Theme <a href="https://github.com/jozhn/Bigfa" target="_blank">Bigfa</a>
 		by <a href="https://jozhn.com/" target="_blank"><span class="cute">Jozhn</span></a>.
 		&nbsp;&nbsp;&nbsp;&nbsp; 
 		<a href="http://www.miitbeian.gov.cn"  target="_blank"><?php echo $this->options->beian;?></a>
@@ -35,16 +35,6 @@
 		<?php if ($this->options->highlightjs == 'able'):?>
 		$("pre code").each(function(i, block) {hljs.highlightBlock(block);});
 		<?php endif; ?>
-		//aplayer
-		<?php if ($this->options->aplayer == 'able'):?>
-		if (typeof aplayers !== 'undefined'){
-			for (var i = 0; i < aplayers.length; i++) {
-				try {aplayers[i].destroy()} catch(e){}
-			}
-		}
-		loadMeting();
-		<?php endif; ?>
     </script>
-
 </body>
 </html>

@@ -5,20 +5,24 @@ function themeConfig($form) {
     $siteUrl = Helper::options()->siteUrl;
 	
 	//昵称
-    $nickname = new Typecho_Widget_Helper_Form_Element_Text('nickname', NULL, '', _t('侧边栏显示的昵称'), _t('显示在头像右侧'));
+    $nickname = new Typecho_Widget_Helper_Form_Element_Text('nickname', NULL, 'Admin', _t('侧边栏显示的昵称'), _t('显示在头像右侧'));
     $form->addInput($nickname);
 	
 	//头像
-    $avatarUrl = new Typecho_Widget_Helper_Form_Element_Text('avatarUrl', NULL, '', _t('首页头像地址'), _t('将显示在首页侧边栏,如/usr/themes/Bigfa/img/head.jpg 或 https://xxx.com/xxx.jpg'));
+    $avatarUrl = new Typecho_Widget_Helper_Form_Element_Text('avatarUrl', NULL, 'https://secure.gravatar.com/avatar/1485e8f004168924938e9bd96c4ff904?s=80&r=X&d=mm', _t('首页头像地址'), _t('将显示在首页侧边栏,如/usr/themes/Bigfa/img/head.jpg 或 https://xxx.com/xxx.jpg'));
     $form->addInput($avatarUrl);
 	
 	//个人描述
-    $descript = new Typecho_Widget_Helper_Form_Element_Text('descript', NULL, 'computer loser', _t(' 个人描述'), _t('将显示在侧边栏的昵称下方'));
+    $descript = new Typecho_Widget_Helper_Form_Element_Text('descript', NULL, 'computer loser', _t('个人描述'), _t('将显示在侧边栏的昵称下方'));
     $form->addInput($descript);
 	
 	//网站logo
-    $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, '', _t('网站Logo地址'), _t('将显示在网站左上角'));
+    $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, 'https://secure.gravatar.com/avatar/1485e8f004168924938e9bd96c4ff904?s=80&r=X&d=mm', _t('网站Logo地址'), _t('将显示在网站左上角'));
     $form->addInput($logoUrl);
+
+    //站点信息
+    $siteDescript = new Typecho_Widget_Helper_Form_Element_Text('siteDescript', NULL, 'blog since 2015', _t('站点信息'), _t('将显示在底栏如：blog since 2015'));
+    $form->addInput($siteDescript);
 	
 	//文章默认缩略图
 	$thumUrl = new Typecho_Widget_Helper_Form_Element_Text('thumUrl', NULL, '', _t('文章默认缩略图地址'), _t('侧边栏文章默认缩略图地址'));
@@ -34,6 +38,10 @@ function themeConfig($form) {
     $next_cdn = new Typecho_Widget_Helper_Form_Element_Text('next_cdn', NULL, $siteUrl, _t('CDN 镜像地址'), _t('静态文件 CDN 镜像加速地址，加速js和css<br>格式参考：'.$siteUrl.'<br>不用请留空或者保持默认'));
     $form->addInput($next_cdn);
 	
+    //图片cdn后缀
+    $cdnSuffix = new Typecho_Widget_Helper_Form_Element_Text('cdnSuffix', NULL, '', _t('图片cdn后缀'), _t('图片CDN链接后缀 如：!sidebar'));
+    $form->addInput($cdnSuffix);
+
 	//Highlightjs
     $highlightjs = new Typecho_Widget_Helper_Form_Element_Radio('highlightjs',
         array('able' => _t('启用'),
@@ -47,7 +55,7 @@ function themeConfig($form) {
         array('able' => _t('启用'),
             'disable' => _t('禁止'),
         ),
-        'disable', _t('APlayer设置'), _t('默认禁止，若启用请先安装APlayer插件Meting版'));
+        'disable', _t('APlayer设置'), _t('默认禁止'));
     $form->addInput($aplayer);
 	
 	//开启Valine
@@ -55,7 +63,7 @@ function themeConfig($form) {
         array('able' => _t('启用'),
             'disable' => _t('禁止'),
         ),
-        'disable', _t('Valine设置'), _t('默认禁止，若启用请先安装Valine.js'));
+        'disable', _t('Valine设置'), _t('默认禁止，若启用请先在评论处插入Valine代码'));
     $form->addInput($valine);
 	
 	//备案号
@@ -88,7 +96,7 @@ function thumb($cid,$isIndex) {
 		if(!empty($options->thumUrl) && $options->thumUrl)
 			$imgurl = $options->thumUrl;
 		else
-			$imgurl = 'https://img.dearjohn.cn/usr/themes/Bigfa/img/default.jpg';
+			$imgurl = 'https://cdn.jozhn.cn/usr/themes/Bigfa/img/default.jpg';
 	}
 	 $db = Typecho_Db::get();
 	 $rs = $db->fetchRow($db->select('table.contents.text')
@@ -142,7 +150,6 @@ function is_mobile()
     }
     return $is_mobile;
 }
-
 
 function getCommentAt($coid){
     $db   = Typecho_Db::get();

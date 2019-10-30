@@ -18,18 +18,29 @@ if (!empty($this->options->next_cdn) && $this->options->next_cdn){
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><?php $this->archiveTitle(array('category' => _t('%s'), 'search' => _t('Search Results for "%s"'), 'tag' => _t('%s'), 'author' => _t('%s的文章')), '', ' - '); ?><?php $this->options->title(); ?></title>
-	<!-- DNS预读取，加速disqus
-	<link rel="dns-prefetch" href="https://api.dearjohn.cn">
-	-->
-	<!-- jquery、valine、highlight.css、style.css -->
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" data-no-instant></script>
-	<?php if ($this->options->valine=='able') : ?>
-	<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-	<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-	<?php endif; ?>
-	
+  	<!-- jquery、valine、highlight.css、style.css -->
+  	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" data-no-instant></script>
+  	<?php if ($this->options->valine=='able') : ?>
+  	<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  	<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  	<?php endif; ?>
+    <!-- require APlayer -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    <!-- require MetingJS -->
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <script>
+    <?php if ($this->options->aplayer == 'able'):?>
+    if (typeof aplayers !== 'undefined'){
+      for (var i = 0; i < aplayers.length; i++) {
+        try {aplayers[i].destroy()} catch(e){}
+      }
+    }
+    </script>
+    <?php endif; ?>
+  	
     <link rel="stylesheet" href="<?php $this->options->themeUrl('static/css/style.css'); ?>">
-	<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css" />
+  	<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css" />
 
     <?php if($this->options->Analytics): ?>
     <?php $this->options->Analytics(); ?>
