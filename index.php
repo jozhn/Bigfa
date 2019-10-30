@@ -57,7 +57,7 @@ $this->need('header.php');
 					<div class="block-postMeta">
 						<a href="<?php $this->permalink() ?>"  rel="category tag"><?php $this->category(','); ?></a>
 						<span class="middotDivider"></span>
-						<time itemprop="datePublished" datetime="<?php $this->date('Y-m-d H:i:s'); ?>"><?php $this->date('Y-m-d H:i:s');?></time>
+						<time itemprop="datePublished" datetime="<?php $this->date('Y-m-d H:i:s'); ?>"><?php $this->date('Y-m-d');?></time>
 					</div>
 				</div>
 				<?php if(thumb($this->cid,1)!=null): ?>
