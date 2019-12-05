@@ -29,8 +29,8 @@ if (!empty($this->options->next_cdn) && $this->options->next_cdn){
     <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
     <!-- require MetingJS -->
     <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-    <script>
     <?php if ($this->options->aplayer == 'able'):?>
+    <script>
     if (typeof aplayers !== 'undefined'){
       for (var i = 0; i < aplayers.length; i++) {
         try {aplayers[i].destroy()} catch(e){}
